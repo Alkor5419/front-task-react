@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Input } from '@/shared/Input'
 import { useStore } from '@/store'
 
 export default function Settings() {
@@ -14,17 +15,19 @@ export default function Settings() {
       <h1 className="text-xl font-bold text-gray-700">Settings</h1>
 
       <div>
-        <label htmlFor="min-age-input" className="block text-sm font-bold tracking-wide text-gray-700">
+        <label
+          htmlFor="min-age-input"
+          className="block text-sm font-bold tracking-wide text-gray-700"
+        >
           MINIMUM AGE
         </label>
         <div className="flex items-center gap-2">
-          <input
+          <Input
             id="min-age-input"
-            type="text"
-            value={minimumAgeInMonths}
-            onChange={(e) => setMinimumAgeInMonths(Number(e.target.value) || 0)}
-            className="border border-gray-300 rounded px-2 py-1 text-lg outline-none"
+            value={String(minimumAgeInMonths)}
+            onChange={(digits) => setMinimumAgeInMonths(Number(digits) || 0)}
             placeholder="0"
+            className="text-lg"
           />
           <span className="text-gray-600">months</span>
         </div>

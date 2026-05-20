@@ -1,5 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useStore } from '@/store'
+import { Input } from '@/shared/Input'
 
 export default function PersonEdit() {
   const { id } = useParams<{ id: string }>()
@@ -23,26 +24,35 @@ export default function PersonEdit() {
         &larr; Back
       </Link>
 
-      <div className="flex items-center gap-3">
-        <img
-          src="/img.png"
-          alt={person.name}
-          className="w-14 h-14 rounded-full border-2 border-violet-500 object-cover"
-        />
+      <div className="group flex items-center gap-[16px]">
+        <div className="box-border h-[90px] w-[90px] shrink-0 rounded-full border border-transparent bg-transparent p-[4px] transition-colors group-focus-within:border-[#3D06D7] group-focus-within:bg-white">
+          <img
+            src="/img.png"
+            alt={person.name}
+            className="h-full w-full rounded-full object-cover"
+          />
+        </div>
         <div>
-          <label htmlFor="hours-input" className="block text-sm font-bold tracking-wide text-gray-700">
+          <label
+            htmlFor="hours-input"
+            className="cursor-pointer block font-koulen mb-[12px] text-[16px] font-normal leading-[15px] tracking-[0.02em] text-gray-700 transition-colors group-focus-within:text-[#3D06D7]"
+          >
             {person.name.toUpperCase()} IS
           </label>
-          <div className="flex items-center gap-2">
-            <input
+          <div className="flex items-center gap-3">
+            <Input
               id="hours-input"
-              type="text"
-              value={person.ageInHours}
-              onChange={(e) => updatePersonAge(person.id, Number(e.target.value) || 0)}
-              className="border border-gray-300 rounded px-2 py-1 text-lg outline-none"
+              value={String(person.ageInHours)}
+              onChange={(digits) => updatePersonAge(person.id, Number(digits) || 0)}
               placeholder="0"
+              className="text-lg"
             />
-            <span className="text-gray-600">hours old</span>
+            <label
+              htmlFor="hours-input"
+              className="cursor-pointer font-inter text-[18px] font-normal leading-none tracking-normal text-[#3D06D7]"
+            >
+              hours old
+            </label>
           </div>
         </div>
       </div>
